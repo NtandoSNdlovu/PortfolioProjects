@@ -3,8 +3,6 @@
 -- Skills used: Joins, CTEs, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- In the original Data extracted from https://ourworldindata.org/covid-deaths, I noticed inconsistencies such as continents, 'International' and 'World' being placed in the 'location' column.
--- I considered this when creating my queries to achieve consistent and accurate results.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- DATA USED IN TABLEAU VISUALISATIONS
