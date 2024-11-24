@@ -1,208 +1,182 @@
+create database lovoluxe;
 
-CREATE DATABASE LOVOLUXE;
+use lovoluxe;
 
-USE LOVOLUXE;
-
-CREATE TABLE Race
+create table race
 (
-ID INT IDENTITY (1,1) PRIMARY KEY,
-Race VARCHAR(30) NOT NULL
+    id int identity(1,1) primary key,
+    race varchar(30) not null
 );
 
-
-CREATE TABLE Director
+create table director
 (
-ID INT IDENTITY (1,1) PRIMARY KEY,
-Name VARCHAR(30) NOT NULL,
-MiddleName VARCHAR(30) NULL,
-Surname VARCHAR(30) NOT NULL,
-Age FLOAT NULL, 
-Gender VARCHAR(10) NOT NULL,
-RaceID INT FOREIGN KEY REFERENCES Race(ID), 
-StartDate DATE NOT NULL,
-EndDate DATE NULL,
-AddressLine1 VARCHAR(60) NOT NULL, 
-AddressLine2 VARCHAR(60) NULL,
-City VARCHAR(30) NOT NULL,
-Province VARCHAR(30) NOT NULL,
-ZipCode VARCHAR(10) NOT NULL,
-Country VARCHAR(30) NOT NULL,
-Email VARCHAR(60) NOT NULL,
-ContactNumber1 VARCHAR(30) NOT NULL,
-ContactNumber2 VARCHAR(30) NULL,
-CreatedDate DATETIME DEFAULT GETDATE()
+    id int identity(1,1) primary key,
+    name varchar(30) not null,
+    middlename varchar(30) null,
+    surname varchar(30) not null,
+    age int null,
+    gender varchar(10) not null,
+    raceid int foreign key references race(id),
+    startdate date not null,
+    enddate date null,
+    addressline1 varchar(60) not null,
+    addressline2 varchar(60) null,
+    city varchar(30) not null,
+    province varchar(30) not null,
+    zipcode varchar(10) not null,
+    country varchar(30) not null,
+    email varchar(60) not null unique,  
+    contactnumber1 varchar(15) not null, 
+    contactnumber2 varchar(15) null, 
+    createddate datetime default getdate()
 );
 
-CREATE TABLE SalesPerson
+create table salesperson
 (
-ID INT IDENTITY (1,1) PRIMARY KEY,
-Name VARCHAR(30) NOT NULL,
-MiddleName VARCHAR(30) NULL,
-Surname VARCHAR(30) NOT NULL,
-Age FLOAT NULL, 
-Gender VARCHAR(10) NOT NULL,
-RaceID INT FOREIGN KEY REFERENCES Race(ID),
-StartDate DATE NOT NULL,
-AddressLine1 VARCHAR(60) NOT NULL, 
-AddressLine2 VARCHAR(60) NULL,
-City VARCHAR(30) NOT NULL,
-Province VARCHAR(30) NOT NULL,
-ZipCode VARCHAR(10) NOT NULL,
-Country VARCHAR(30) NOT NULL,
-Email VARCHAR(60) NOT NULL,
-ContactNumber1 VARCHAR(30) NULL,
-ContactNumber2 VARCHAR(30) NULL,
-CreatedDate DATETIME DEFAULT GETDATE()
+    id int identity(1,1) primary key,
+    name varchar(30) not null,
+    middlename varchar(30) null,
+    surname varchar(30) not null,
+    age int null,  -- changed to int
+    gender varchar(10) not null,
+    raceid int foreign key references race(id),
+    startdate date not null,
+    addressline1 varchar(60) not null,
+    addressline2 varchar(60) null,
+    city varchar(30) not null,
+    province varchar(30) not null,
+    zipcode varchar(10) not null,
+    country varchar(30) not null,
+    email varchar(60) not null unique, 
+    contactnumber1 varchar(15) null, 
+    contactnumber2 varchar(15) null,  
+    createddate datetime default getdate()
 );
 
-CREATE TABLE Supplier
+create table supplier
 (
-ID INT PRIMARY KEY, 
-Name VARCHAR(30) NOT NULL,
-ContactName VARCHAR(30) NULL,
-ContactNumber VARCHAR(30) NULL,
-URL_Address NVARCHAR(250) NULL,
-AddressLine1 VARCHAR(60) NULL,
-AddressLine2 VARCHAR(60) NULL,
-City VARCHAR(30) NULL,
-Province VARCHAR(30) NULL,
-ZipCode VARCHAR(10) NULL,
-Country VARCHAR(30) NOT NULL,
-ContactPersonName VARCHAR(30) NULL,
-ContactPersonNumber VARCHAR(30) NULL,
-Email VARCHAR(60) NULL,
-ContactNumber VARCHAR(30) NULL,
-CreatedDate DATETIME DEFAULT GETDATE()
-)
-
-CREATE TABLE Customer
-(
-ID INT IDENTITY (1,1) PRIMARY KEY,
-Name VARCHAR(30) NOT NULL,
-MiddleName VARCHAR(30) NULL,
-Surname VARCHAR(30) NULL,
-AddressLine1 VARCHAR(60) NOT NULL, 
-AddressLine2 VARCHAR(60) NULL,
-City VARCHAR(30) NOT NULL,
-Province VARCHAR(30) NOT NULL,
-ZipCode VARCHAR(10) NOT NULL,
-Country VARCHAR(30) NOT NULL,
-Email VARCHAR(60) NULL,
-ContactNumber VARCHAR(30) NULL,
-CreatedDate DATETIME DEFAULT GETDATE()
+    id int identity(1,1) primary key,
+    name varchar(30) not null,
+    contactname varchar(30) null,
+    contactnumber varchar(15) null,
+    url_address nvarchar(250) null,
+    addressline1 varchar(60) null,
+    addressline2 varchar(60) null,
+    city varchar(30) null,
+    province varchar(30) null,
+    zipcode varchar(10) null,
+    country varchar(30) not null,
+    contactpersonname varchar(30) null,
+    contactpersonnumber varchar(15) null, 
+    email varchar(60) null unique,
+    createddate datetime default getdate()
 );
 
-
-CREATE TABLE Size
+create table customer
 (
-ID INT IDENTITY (1,1) PRIMARY KEY,
-GeneralSize NVARCHAR(10) NOT NULL,
-TrouserSize NVARCHAR(10) NULL,
-WaistSize_cm NVARCHAR(10) NULL,
-BustSize_cm NVARCHAR(10) NULL,
-HipsSize_cm NVARCHAR(10) NULL,
+    id int identity(1,1) primary key,
+    name varchar(30) not null,
+    middlename varchar(30) null,
+    surname varchar(30) null,
+    addressline1 varchar(60) not null,
+    addressline2 varchar(60) null,
+    city varchar(30) not null,
+    province varchar(30) not null,
+    zipcode varchar(10) not null,
+    country varchar(30) not null,
+    email varchar(60) null unique,
+    contactnumber varchar(15) null, 
+    createddate datetime default getdate()
 );
 
-CREATE TABLE PrimaryColour
+create table size
 (
-PrimaryColourID INT IDENTITY (1,1) PRIMARY KEY,
-Colour VARCHAR(30) NOT NULL
+    id int identity(1,1) primary key,
+    generalsize nvarchar(10) not null,
+    trousersize nvarchar(10) null,
+    waistsize_cm nvarchar(10) null,
+    bustsize_cm nvarchar(10) null,
+    hipsize_cm nvarchar(10) null
 );
 
-CREATE TABLE SecondaryColour
+create table primarycolour
 (
-SecondaryColourID INT IDENTITY (1,1) PRIMARY KEY,
-Colour VARCHAR(30) NOT NULL
+    primarycolourid int identity(1,1) primary key,
+    colour varchar(30) not null
 );
 
-CREATE TABLE LogoColour
+create table secondarycolour
 (
-LogoColourID INT IDENTITY (1,1) PRIMARY KEY,
-Colour VARCHAR(30) NOT NULL
+    secondarycolourid int identity(1,1) primary key,
+    colour varchar(30) not null
 );
 
-CREATE TABLE ProductStatus
-(ID INT PRIMARY KEY IDENTITY (1,1),
-ProductStatus VARCHAR(30) NOT NULL
-);
-
-CREATE TABLE Product
+create table logocolour
 (
-ID INT IDENTITY (1,1) PRIMARY KEY,
-LOVOProductName VARCHAR(255) NOT NULL,
-SupplierProductName VARCHAR(255) NOT NULL,
-ProductCode VARCHAR (60) NULL,
-SupplierID INT FOREIGN KEY REFERENCES Supplier(ID),
-SizeID INT FOREIGN KEY REFERENCES Size(ID),
-PrimaryColourID INT FOREIGN KEY REFERENCES PrimaryColour(PrimaryColourID) NOT NULL,
-SecondaryColourID INT FOREIGN KEY REFERENCES SecondaryColour(SecondaryColourID),
-LogoColourID INT FOREIGN KEY REFERENCES LogoColour(LogoColourID),
-LogoSize_PositionDescription VARCHAR (255) NULL,
-ProductDescription VARCHAR(255) NULL,
-ProductCost FLOAT NOT NULL,
-ShippingCost FLOAT NULL,
-CustomisationCost FLOAT NOT NULL,
-PackagingCost FLOAT NOT NULL,
-Customs FLOAT NULL,
-TotalUnitCost FLOAT NOT NULL,
-ListingPrice FLOAT NOT NULL,
-ExpectedMarkUp FLOAT NOT NULL,
-InventoryOnHand INT NULL,
-ProductStatusID INT FOREIGN KEY REFERENCES ProductStatus(ID), 
-CreatedDate DATETIME DEFAULT GETDATE()
+    logocolourid int identity(1,1) primary key,
+    colour varchar(30) not null
 );
 
-
-CREATE TABLE SalesOrderHeader
+create table productstatus
 (
-SalesOrderID INT IDENTITY (1001,1) PRIMARY KEY,
-OrderDate Date NOT NULL,
-ShipDate Date NOT NULL,
-CarrierTrackingNumber VARCHAR(60),
-CustomerID INT FOREIGN KEY REFERENCES Customer(ID),
-AddressLine1 VARCHAR(60) NOT NULL, 
-AddressLine2 VARCHAR(60) NULL,
-City VARCHAR(30) NOT NULL,
-Province VARCHAR(30) NOT NULL,
-ZipCode VARCHAR(10) NOT NULL,
-Country VARCHAR(30) NOT NULL,
-SubTotal FLOAT,
-ShippingCost FLOAT,
-OrderDiscount FLOAT,
-TotalDue FLOAT,
-CreatedDate DATETIME DEFAULT GETDATE()
+    id int primary key identity(1,1),
+    productstatus varchar(30) not null
 );
 
-CREATE TABLE SalesOrderDeatail
+create table product
 (
-SalesOrderDetailID INT IDENTITY (0001,1) PRIMARY KEY,
-SalesOrderID INT FOREIGN KEY REFERENCES SalesOrderHeader(SalesOrderID),
-Quantity INT NOT NULL, 
-ProductID INT FOREIGN KEY REFERENCES Product(ID),
-UnitPrice FLOAT NOT NULL,
-UnitPriceDiscount FLOAT NOT NULL, 
-LineTotal FLOAT NOT NULL,
-CreatedDate DATETIME DEFAULT GETDATE()
+    id int identity(1,1) primary key,
+    lovoproductname varchar(255) not null,
+    supplierproductname varchar(255) not null,
+    productcode varchar(60) null,
+    supplierid int foreign key references supplier(id),
+    sizeid int foreign key references size(id),
+    primarycolourid int foreign key references primarycolour(primarycolourid) not null,
+    secondarycolourid int foreign key references secondarycolour(secondarycolourid),
+    logocolourid int foreign key references logocolour(logocolourid),
+    logosize_positiondescription varchar(255) null,
+    productdescription varchar(255) null,
+    productcost float not null,
+    shippingcost float null,
+    customisationcost float not null,
+    packagingcost float not null,
+    customs float null,
+    totalunitcost float not null,
+    listingprice float not null,
+    expectedmarkup float not null,
+    inventoryonhand int null,
+    productstatusid int foreign key references productstatus(id),
+    createddate datetime default getdate()
 );
 
+create table salesorderheader
+(
+    salesorderid int identity(1001,1) primary key,
+    orderdate date not null,
+    shipdate date not null,
+    carriertrackingnumber varchar(60),
+    customerid int foreign key references customer(id),
+    addressline1 varchar(60) not null,
+    addressline2 varchar(60) null,
+    city varchar(30) not null,
+    province varchar(30) not null,
+    zipcode varchar(10) not null,
+    country varchar(30) not null,
+    subtotal float,
+    shippingcost float,
+    orderdiscount float,
+    totaldue float,
+    createddate datetime default getdate()
+);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+create table salesorderdetail
+(
+    salesorderdetailid int identity(1,1) primary key,  -- fixed typo in table name
+    salesorderid int foreign key references salesorderheader(salesorderid),
+    quantity int not null,
+    productid int foreign key references product(id),
+    unitprice float not null,
+    unitpricediscount float not null,
+    linetotal float not null,
+    createddate datetime default getdate()
+);
