@@ -37,7 +37,7 @@ create table salesperson
     name varchar(30) not null,
     middlename varchar(30) null,
     surname varchar(30) not null,
-    age int null,  -- changed to int
+    age int null,  
     gender varchar(10) not null,
     raceid int foreign key references race(id),
     startdate date not null,
@@ -171,7 +171,7 @@ create table salesorderheader
 
 create table salesorderdetail
 (
-    salesorderdetailid int identity(1,1) primary key,  -- fixed typo in table name
+    salesorderdetailid int identity(1,1) primary key,  
     salesorderid int foreign key references salesorderheader(salesorderid),
     quantity int not null,
     productid int foreign key references product(id),
